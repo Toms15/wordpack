@@ -6,9 +6,6 @@ Clone this repo on your wp-content/themes folder. Run this inside of the theme:
 
 `yarn add laravel-mix cross-env`
 
-## Create resources files
-Create resource folder with **JS** subfolder and **SASS** subfolder
-
 ## Webpack file
 Edit the webpack.mix.js file with your local server name
 

@@ -2,5 +2,4 @@
 /js
 mix-manifest.json
 /node_modules
-/resources
 yarn.lock
