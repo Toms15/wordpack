@@ -1,5 +1,6 @@
 body {
 	background-color: map-get($colors, white);
+	font-family: $title;
 }
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {}

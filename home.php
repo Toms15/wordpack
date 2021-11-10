@@ -17,7 +17,12 @@ get_header();
 
 	<main id="primary" class="site-main">
 
+        <div style="margin-top: 50px"></div>
         <img src="<?php echo get_template_directory_uri() . '/images/1080x540.webp'?>" alt="Example WebP image">
+        <div style="margin-bottom: 50px"></div>
+        <h1 class="title">Title Here</h1>
+        <h2 class="subtitle">Subtitle Here</h2>
+        <div style="margin-bottom: 50px"></div>
 
 	</main><!-- #main -->
 
