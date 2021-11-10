@@ -5,7 +5,7 @@ require('laravel-mix-webp');
 
 mix
   .ImageWebp({
-    from: 'images',
+    from: 'resources/images',
     to: 'images',
   })
 

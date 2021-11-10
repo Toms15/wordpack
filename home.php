@@ -16,6 +16,9 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main">
+
+        <img src="<?php echo get_template_directory_uri() . '/images/1080x540.webp'?>" alt="Example WebP image">
+
 	</main><!-- #main -->
 
 <?php
