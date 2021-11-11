@@ -5,7 +5,7 @@
 import Router from './routes';
 import common from './routes/common';
 import home from './routes/home';
-import about_us from './routes/aboutUs';
+import page_template_about_us from './routes/pageTemplateAboutUs';
 
 /** Populate Router instance with DOM routes */
 const routes = new Router({
@@ -14,7 +14,7 @@ const routes = new Router({
   // Home template
   home,
   // About us template
-  about_us,
+  page_template_about_us,
 });
 
 // Load Events
