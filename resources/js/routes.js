@@ -1,10 +1,7 @@
+import camelCase from 'camelCase';
+
 /**
  * DOM-based Routing
- *
- * Based on {@link http://goo.gl/EUTi53|Markup-based Unobtrusive Comprehensive DOM-ready Execution} by Paul Irish
- *
- * The routing fires all common scripts, followed by the page specific scripts.
- * Add additional events for more control over timing e.g. a finalize event
  */
 class Router {
 
@@ -55,7 +52,7 @@ class Router {
       .toLowerCase()
       .replace(/-/g, '_')
       .split(/\s+/)
-      // .map(camelCase)
+      .map(camelCase)
       .forEach((className) => {
         this.fire(className);
         this.fire(className, 'finalize');

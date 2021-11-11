@@ -1,21 +1,28 @@
-// import external dependencies
-// import 'jquery';
+/*
+ * Import external dependencies
+ */
 
-// import local dependencies
+/* 
+ * Import local dependencies
+ */
 import Router from './routes';
 import common from './routes/common';
 import home from './routes/home';
-import page_template_about_us from './routes/pageTemplateAboutUs';
+import pageTemplateAboutUs from './routes/pageTemplateAboutUs';
 
-/** Populate Router instance with DOM routes */
+/*
+ * Populate Router instance with DOM routes
+ */
 const routes = new Router({
   // All pages
   common,
   // Home template
   home,
   // About us template
-  page_template_about_us,
+  pageTemplateAboutUs,
 });
 
-// Load Events
+/*
+ * Load Events
+ */
 jQuery(document).ready(() => routes.loadEvents());
