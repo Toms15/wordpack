@@ -6,7 +6,7 @@ Clone this repo on your wp-content/themes folder. Run this inside of the theme:
 
 ```
 yarn add laravel-mix cross-env
-// or you prefer npm install laravel-mix cross-env
+# or you prefer npm install laravel-mix cross-env
 ```
 
 ## Webpack file
