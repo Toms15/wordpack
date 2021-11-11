@@ -4,10 +4,9 @@ Webpack in WordPress Theme
 ## Get started
 Clone this repo on your wp-content/themes folder. Run this inside of the theme:
 
-```
-yarn add laravel-mix cross-env
-# or you prefer npm install laravel-mix cross-env
-```
+`yarn add laravel-mix cross-env`
+or
+`npm install laravel-mix cross-env`
 
 ## Webpack file
 Edit the webpack.mix.js file with your local server name
@@ -15,10 +14,14 @@ Edit the webpack.mix.js file with your local server name
 ## Launch the webserver with
 
 `yarn watch`
+or
+`npm run watch`
 
 ## Build for production
 Run this inside of the theme:
 
 `yarn prod`
+or
+`npm run prod`
 
 When done with coding remember not to upload "wp-content/themes/wordpack/node_modules" and "wp-content/themes/wordpack/resources" folders on your FTP
