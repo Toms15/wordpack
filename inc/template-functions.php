@@ -22,6 +22,11 @@ function wordpack_body_classes( $classes ) {
 		$classes[] = 'no-sidebar';
 	}
 
+	if ( ! is_front_page() ) {
+		global $post;
+		$classes[] = $post->post_name;
+	}
+
 	return $classes;
 }
 add_filter( 'body_class', 'wordpack_body_classes' );
