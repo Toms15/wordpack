@@ -302,6 +302,19 @@ if( function_exists('acf_add_options_page') ) {
 }
 
 /**
+ * Generate Random String
+ */
+function wordpack_random_string($length = 5) {
+    $characters = 'abcdefghijklmnopqrstuvwxyz';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
