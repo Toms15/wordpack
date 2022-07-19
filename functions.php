@@ -287,6 +287,21 @@ function wordpack_add_image_meta_data( $attachment_ID ) {
 }
 
 /**
+ * Implement the Option Page.
+ */
+if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page(array(
+		'page_title' 	=> 'Opzioni Generali del Tema',
+		'menu_title'	=> 'Opzioni del Tema',
+		'menu_slug' 	=> 'theme-general-settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false,
+		'icon_url'    	=> 'dashicons-admin-generic',
+		'position'    	=> 2
+	));
+}
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
