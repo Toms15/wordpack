@@ -208,6 +208,12 @@ add_action( 'wp_enqueue_scripts', 'wordpack_scripts' );
 show_admin_bar(false);
 
 /**
+ * Implement the CSRF Token for Contact Form 7
+ */
+add_filter( 'wpcf7_verify_nonce', '__return_true' );
+add_filter( 'wpcf7_spam', '__return_false' );
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
