@@ -12,7 +12,7 @@ mix
 mix.js('resources/js/app.js', 'js')
    .sass('resources/sass/app.scss', 'css')
    .browserSync({
-       proxy: 'https://packword.app',
+       proxy: 'https://packword.test',
        files: [
               'css/**/*',
               'js/**/*'

@@ -1,64 +1,35 @@
 // ------------------------------------------------
 // H1 (Mobile - Desktop)
 // ------------------------------------------------
-@mixin h1-sm {
-	color: map-get($colors, black);
-	font-family: $title;
-	font-weight: 700;
-	font-size: 50px;
-	line-height: 50px;
-}
-@mixin h1-lg {
-	font-size: 75px;
-	line-height: 75px;
+@mixin h1 {
 }
 // ------------------------------------------------
 // H2 (Mobile - Desktop)
 // ------------------------------------------------
-@mixin h2-sm {
-	color: map-get($colors, danger);
-	font-family: $title;
-	font-weight: 400;
-	font-size: 25px;
-	line-height: 25px;
-	text-transform: uppercase;
-}
-@mixin h2-lg {
-	font-size: 60px;
-	line-height: 60px;
+@mixin h2 {
 }
 // ------------------------------------------------
 // H3 (Mobile - Desktop)
 // ------------------------------------------------
-@mixin h3-sm {
-}
-@mixin h3-lg {
+@mixin h3 {
 }
 // ------------------------------------------------
 // H4 (Mobile - Desktop)
 // ------------------------------------------------
-@mixin h4-sm {
-}
-@mixin h4-lg {
+@mixin h4 {
 }
 // ------------------------------------------------
 // H5 (Mobile - Desktop)
 // ------------------------------------------------
-@mixin h5-sm {
-}
-@mixin h5-lg {
+@mixin h5 {
 }
 // ------------------------------------------------
 // H6 (Mobile - Desktop)
 // ------------------------------------------------
-@mixin h6-sm {
-}
-@mixin h6-lg {
+@mixin h6 {
 }
 // ------------------------------------------------
 // Paragraph (Mobile - Desktop)
 // ------------------------------------------------
-@mixin paragraph-sm {
-}
-@mixin paragraph-lg {
+@mixin paragraph {
 }
