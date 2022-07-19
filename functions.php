@@ -228,6 +228,23 @@ add_filter('acf/format_value/type=text', 'do_shortcode');
 add_filter('acf/format_value/type=textarea', 'do_shortcode');
 
 /**
+ * Adding custom colors in editor
+ */
+function wordpack_mce_options($init) {
+    $custom_colours = '
+        "000000", "Black",
+        "FFFFFF", "White"
+    ';
+    // build colour grid default+custom colors
+    $init['textcolor_map'] = '['.$custom_colours.']';
+    // change the number of rows in the grid if the number of colors changes
+    // 8 swatches per row
+    $init['textcolor_rows'] = 2;
+    return $init;
+}
+add_filter('tiny_mce_before_init', 'wordpack_mce_options');
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
