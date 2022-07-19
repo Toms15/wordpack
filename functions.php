@@ -266,6 +266,27 @@ function wordpack_excerpt_more($more) {
 add_filter('excerpt_more', 'wordpack_excerpt_more');
 
 /**
+ * Automatically add media information at upload time
+ */
+add_action( 'add_attachment', 'wordpack_add_image_meta_data' );
+function wordpack_add_image_meta_data( $attachment_ID ) {
+
+ $filename   =   $_REQUEST['name']; // or get_post by ID
+ $withoutExt =   preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
+ $withoutExt =   str_replace(array('-'), ' ', $withoutExt);
+
+ $my_post = array(
+   'post_title' 	=> $withoutExt,  // title
+   'ID'           => $attachment_ID,
+   'post_excerpt' => $withoutExt,  // caption
+   'post_content' => $withoutExt,  // description
+ );
+ wp_update_post( $my_post );
+ // update alt text for post
+ update_post_meta($attachment_ID, '_wp_attachment_image_alt', $withoutExt );
+}
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
