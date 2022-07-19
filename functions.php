@@ -222,6 +222,12 @@ function my_acf_init() {
 add_action('acf/init', 'my_acf_init');
 
 /**
+ * Enabled ACF Field to print shortcode
+ */
+add_filter('acf/format_value/type=text', 'do_shortcode');
+add_filter('acf/format_value/type=textarea', 'do_shortcode');
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
