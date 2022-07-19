@@ -341,3 +341,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
 
+/**
+ * Requiring plugins
+ */
+require get_template_directory() . '/inc/tgm_activation.php';
