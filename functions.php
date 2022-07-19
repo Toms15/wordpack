@@ -201,6 +201,12 @@ function wordpack_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wordpack_scripts' );
 
+
+/**
+ * Hide Admin bar
+ */
+show_admin_bar(false);
+
 /**
  * Implement the Custom Header feature.
  */
