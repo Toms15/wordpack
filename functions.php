@@ -50,7 +50,11 @@ if ( ! function_exists( 'wordpack_setup' ) ) :
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'menu-1' => esc_html__( 'Primary', 'wordpack' ),
+				'mobile' => esc_html__( 'Mobile', 'wordpack' ),
+				'primary' => esc_html__( 'Primary', 'wordpack' ),
+				'sitemap' => esc_html__( 'Sitemap', 'wordpack' ),
+				'social' => esc_html__( 'Social', 'wordpack' ),
+				'useful-links' => esc_html__( 'Useful links', 'wordpack' )
 			)
 		);
 
