@@ -217,7 +217,7 @@ add_filter( 'wpcf7_spam', '__return_false' );
  * Add Google Maps API
  */
 function my_acf_init() {
-	acf_update_setting('google_api_key', 'AIzaSyAx7n3I7Hj-QVxXnLNgR9vOENdcwrQKJb0');
+	acf_update_setting('google_api_key', '...');
 }
 add_action('acf/init', 'my_acf_init');
 
@@ -243,6 +243,27 @@ function wordpack_mce_options($init) {
     return $init;
 }
 add_filter('tiny_mce_before_init', 'wordpack_mce_options');
+
+/** 
+ * Excerpt function
+ */
+function wordpack_excerpt($num)
+{
+  global $post;
+  $limit = $num + 1;
+  $excerpt = explode(' ', get_the_excerpt(), $limit);
+  array_pop($excerpt);
+  $excerpt = implode(" ", $excerpt) . "...";
+  echo $excerpt;
+}
+function wordpack_excerpt_length( $length ) {
+    return 20;
+}
+add_filter( 'excerpt_length', 'wordpack_excerpt_length', 999 );
+function wordpack_excerpt_more($more) {
+    return '...';
+}
+add_filter('excerpt_more', 'wordpack_excerpt_more');
 
 /**
  * Implement the Custom Header feature.
