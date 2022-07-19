@@ -129,8 +129,52 @@ function wordpack_widgets_init() {
 			'description'   => esc_html__( 'Add widgets here.', 'wordpack' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'First Footer Widget Area', 'wordpack' ),
+			'id'            => 'first-footer-widget-area',
+			'description'   => esc_html__( 'Add widgets here.', 'wordpack' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Second Footer Widget Area', 'wordpack' ),
+			'id'            => 'second-footer-widget-area',
+			'description'   => esc_html__( 'Add widgets here.', 'wordpack' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Third Footer Widget Area', 'wordpack' ),
+			'id'            => 'third-footer-widget-area',
+			'description'   => esc_html__( 'Add widgets here.', 'wordpack' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Fourth Footer Widget Area', 'wordpack' ),
+			'id'            => 'fourth-footer-widget-area',
+			'description'   => esc_html__( 'Add widgets here.', 'wordpack' ),
+			'before_widget' => '<section id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h4 class="widget-title">',
+			'after_title'   => '</h4>',
 		)
 	);
 }
