@@ -214,6 +214,14 @@ add_filter( 'wpcf7_verify_nonce', '__return_true' );
 add_filter( 'wpcf7_spam', '__return_false' );
 
 /**
+ * Add Google Maps API
+ */
+function my_acf_init() {
+	acf_update_setting('google_api_key', 'AIzaSyAx7n3I7Hj-QVxXnLNgR9vOENdcwrQKJb0');
+}
+add_action('acf/init', 'my_acf_init');
+
+/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
