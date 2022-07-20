@@ -347,6 +347,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 require get_template_directory() . '/inc/shortcodes.php';
 
 /**
+ * Implement the Custom Post Types.
+ */
+require get_template_directory() . '/inc/custom-post-types.php';
+
+/**
  * Requiring plugins
  */
 require get_template_directory() . '/inc/tgm_activation.php';
