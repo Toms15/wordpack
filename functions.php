@@ -342,6 +342,11 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 /**
+ * Implement the shortcodes.
+ */
+require get_template_directory() . '/inc/shortcodes.php';
+
+/**
  * Requiring plugins
  */
 require get_template_directory() . '/inc/tgm_activation.php';
