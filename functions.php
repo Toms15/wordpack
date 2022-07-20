@@ -352,6 +352,11 @@ require get_template_directory() . '/inc/shortcodes.php';
 require get_template_directory() . '/inc/custom-post-types.php';
 
 /**
+ * Implement the Custom Taxonomies.
+ */
+require get_template_directory() . '/inc/custom-taxonomies.php';
+
+/**
  * Requiring plugins
  */
 require get_template_directory() . '/inc/tgm_activation.php';
