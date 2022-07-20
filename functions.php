@@ -376,3 +376,11 @@ function wordpack_disable_emojis()
     // add_filter('tiny_mce_plugins', 'disable_emojis_tinymce');
 }
 add_action('init', 'wordpack_disable_emojis');
+
+/**
+ * Disable wp-embed.min.js
+ */
+function wordpack_deregister_scripts(){
+  wp_dequeue_script( 'wp-embed' );
+ }
+add_action( 'wp_footer', 'wordpack_deregister_scripts' );
