@@ -357,6 +357,11 @@ require get_template_directory() . '/inc/custom-post-types.php';
 require get_template_directory() . '/inc/custom-taxonomies.php';
 
 /**
+ * Implement Dynamic values for CF7.
+ */
+require get_template_directory() . '/inc/dynamic-values-cf7.php';
+
+/**
  * Requiring plugins
  */
 require get_template_directory() . '/inc/tgm_activation.php';
