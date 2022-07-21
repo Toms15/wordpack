@@ -59,9 +59,15 @@
     "production": "mix --production"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-pro": "^6.0.0",
     "@popperjs/core": "^2.10.1",
     "bootstrap": "^5.1.1",
+    "counterup2": "^2.0.2",
     "cross-env": "^7.0.3",
-    "laravel-mix": "^6.0.31"
+    "laravel-mix": "^6.0.31",
+    "rellax": "^1.12.1",
+    "select2": "^4.1.0-rc.0",
+    "swiper": "^7.4.1",
+    "vanilla-lazyload": "^12.0.0"
   }
 }
