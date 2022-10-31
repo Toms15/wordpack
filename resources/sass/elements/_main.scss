@@ -1,19 +1,6 @@
-.title {
-	@include h1-sm;
-}
-.subtitle {
-	@include h2-sm;
-}
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {}
 // Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-	.title {
-		@include h1-lg;
-	}
-	.subtitle {
-		@include h2-lg;
-	}
-}
+@media (min-width: 992px) {}
 // Extra large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {}
