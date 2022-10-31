@@ -201,6 +201,20 @@ function wordpack_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wordpack_scripts' );
 
+/**
+ * Show Documentation Notice
+ */
+function wordpack_admin_notice_training() {
+	$user = wp_get_current_user();
+    if ( in_array( 'admin', (array) $user->roles ) ) {
+		echo
+			'<div class="notice notice-info is-dismissible">
+				<p><strong>Documentazione sito web</strong></p>
+		    	<p>Visualizza la <a href="/documentation" target="_blank">documentazione completa</a> per gestire i contenuti del sito web.</p>
+		    </div>';
+	} 
+}
+add_action( 'admin_notices', 'wordpack_admin_notice_training' );
 
 /**
  * Hide Admin bar
@@ -362,6 +376,15 @@ require get_template_directory() . '/inc/custom-taxonomies.php';
 require get_template_directory() . '/inc/dynamic-values-cf7.php';
 
 /**
+ * Implement Widget Shortcodes.
+ */
+defined( 'ABSPATH' ) || die;
+require get_template_directory() . '/inc/widget-shortcodes.php';
+require get_template_directory() . '/inc/widget-shortcodes-gutenberg.php';
+Widget_Shortcode::get_instance();
+Widget_Shortcode_Gutenberg::get_instance();
+
+/**
  * Requiring plugins
  */
 require get_template_directory() . '/inc/tgm_activation.php';
@@ -397,3 +420,40 @@ function wordpack_remove_wp_block_library_css(){
   wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
 } 
 add_action( 'wp_enqueue_scripts', 'wordpack_remove_wp_block_library_css', 100 );
+
+/**
+ * Remove lazy load from first image
+ */
+function wordpack_remove_lazy_load_from_first_image($content){
+    if ( is_single() || is_page() || is_front_page() || is_home() ) {
+        $content = mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
+        $document = new DOMDocument();
+        libxml_use_internal_errors(true);
+        $document->loadHTML(utf8_decode($content));
+        $imgs = $document->getElementsByTagName('img');
+        $img = $imgs[0];
+        if ($imgs[0] == 1) { // Check if the post has images first
+            $img->removeAttribute( 'loading' );
+            $html = $document->saveHTML();
+            return $html;
+        }
+        else {
+            return $content;
+        }
+     }
+     else {
+        return $content;
+     }
+}
+add_filter ('the_content', 'wordpack_remove_lazy_load_from_first_image');
+
+/**
+ * Remove query string from static resources
+ */
+function wordpack_removing_versioning_from_static_resources($src){
+	if( strpos( $src, '?ver=' ) )
+	$src = remove_query_arg( 'ver', $src );
+	return $src;
+}
+add_filter( 'style_loader_src', 'wordpack_removing_versioning_from_static_resources', 10, 2 );
+add_filter( 'script_loader_src', 'wordpack_removing_versioning_from_static_resources', 10, 2 );
