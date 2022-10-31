@@ -63,7 +63,7 @@ function wordpack_register_required_plugins() {
 			'slug'               => 'advanced-custom-fields-pro', // The plugin slug (typically the folder name).
 			'source'             => get_template_directory() . '/lib/plugins/advanced-custom-fields-pro.zip', // The plugin source.
 			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-			'version'            => '5.12.3', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+			'version'            => '6.0.3', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
 			'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
 			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
 		),
@@ -85,11 +85,6 @@ function wordpack_register_required_plugins() {
 		array(
 			'name'      => 'Contact Form 7',
 			'slug'      => 'contact-form-7',
-			'required'  => true,
-		),
-		array(
-			'name'      => 'Widget Shortcode',
-			'slug'      => 'widget-shortcode',
 			'required'  => true,
 		),
 		array(
