@@ -185,6 +185,16 @@ function wordpack_widgets_init() {
 add_action( 'widgets_init', 'wordpack_widgets_init' );
 
 /**
+ * Implement Widget Shortcodes.
+ */
+defined( 'ABSPATH' ) || die;
+require get_template_directory() . '/inc/widget-shortcodes.php';
+require get_template_directory() . '/inc/widget-shortcodes-gutenberg.php';
+Widget_Shortcode::get_instance();
+Widget_Shortcode_Gutenberg::get_instance();
+
+
+/**
  * Enqueue scripts and styles.
  */
 function wordpack_scripts() {
@@ -201,20 +211,6 @@ function wordpack_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'wordpack_scripts' );
 
-/**
- * Show Documentation Notice
- */
-function wordpack_admin_notice_training() {
-	$user = wp_get_current_user();
-    if ( in_array( 'admin', (array) $user->roles ) ) {
-		echo
-			'<div class="notice notice-info is-dismissible">
-				<p><strong>Documentazione sito web</strong></p>
-		    	<p>Visualizza la <a href="/documentation" target="_blank">documentazione completa</a> per gestire i contenuti del sito web.</p>
-		    </div>';
-	} 
-}
-add_action( 'admin_notices', 'wordpack_admin_notice_training' );
 
 /**
  * Hide Admin bar
@@ -242,62 +238,22 @@ add_filter('acf/format_value/type=text', 'do_shortcode');
 add_filter('acf/format_value/type=textarea', 'do_shortcode');
 
 /**
- * Adding custom colors in editor
- */
-function wordpack_mce_options($init) {
-    $custom_colours = '
-        "000000", "Black",
-        "FFFFFF", "White"
-    ';
-    // build colour grid default+custom colors
-    $init['textcolor_map'] = '['.$custom_colours.']';
-    // change the number of rows in the grid if the number of colors changes
-    // 8 swatches per row
-    $init['textcolor_rows'] = 2;
-    return $init;
-}
-add_filter('tiny_mce_before_init', 'wordpack_mce_options');
-
-/** 
- * Excerpt function
- */
-function wordpack_excerpt($num)
-{
-  global $post;
-  $limit = $num + 1;
-  $excerpt = explode(' ', get_the_excerpt(), $limit);
-  array_pop($excerpt);
-  $excerpt = implode(" ", $excerpt) . "...";
-  echo $excerpt;
-}
-function wordpack_excerpt_length( $length ) {
-    return 20;
-}
-add_filter( 'excerpt_length', 'wordpack_excerpt_length', 999 );
-function wordpack_excerpt_more($more) {
-    return '...';
-}
-add_filter('excerpt_more', 'wordpack_excerpt_more');
-
-/**
  * Automatically add media information at upload time
  */
 add_action( 'add_attachment', 'wordpack_add_image_meta_data' );
 function wordpack_add_image_meta_data( $attachment_ID ) {
-
- $filename   =   $_REQUEST['name']; // or get_post by ID
- $withoutExt =   preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
- $withoutExt =   str_replace(array('-'), ' ', $withoutExt);
-
- $my_post = array(
-   'post_title' 	=> $withoutExt,  // title
-   'ID'           => $attachment_ID,
-   'post_excerpt' => $withoutExt,  // caption
-   'post_content' => $withoutExt,  // description
- );
- wp_update_post( $my_post );
- // update alt text for post
- update_post_meta($attachment_ID, '_wp_attachment_image_alt', $withoutExt );
+	$filename   =   $_REQUEST['name']; // or get_post by ID
+	$withoutExt =   preg_replace('/\\.[^.\\s]{3,4}$/', '', $filename);
+	$withoutExt =   str_replace(array('-'), ' ', $withoutExt);
+	$my_post = array(
+	'post_title' 	=> $withoutExt,  // title
+	'ID'           => $attachment_ID,
+	'post_excerpt' => $withoutExt,  // caption
+	'post_content' => $withoutExt,  // description
+	);
+	wp_update_post( $my_post );
+	// update alt text for post
+	update_post_meta($attachment_ID, '_wp_attachment_image_alt', $withoutExt );
 }
 
 /**
@@ -363,6 +319,11 @@ require get_template_directory() . '/inc/shortcodes.php';
 /**
  * Implement the Custom Post Types.
  */
+require get_template_directory() . '/inc/custom-editors.php';
+
+/**
+ * Implement the Custom Post Types.
+ */
 require get_template_directory() . '/inc/custom-post-types.php';
 
 /**
@@ -371,18 +332,14 @@ require get_template_directory() . '/inc/custom-post-types.php';
 require get_template_directory() . '/inc/custom-taxonomies.php';
 
 /**
+ * Implement the Custom Admin Notices.
+ */
+require get_template_directory() . '/inc/custom-admin-notices.php';
+
+/**
  * Implement Dynamic values for CF7.
  */
 require get_template_directory() . '/inc/dynamic-values-cf7.php';
-
-/**
- * Implement Widget Shortcodes.
- */
-defined( 'ABSPATH' ) || die;
-require get_template_directory() . '/inc/widget-shortcodes.php';
-require get_template_directory() . '/inc/widget-shortcodes-gutenberg.php';
-Widget_Shortcode::get_instance();
-Widget_Shortcode_Gutenberg::get_instance();
 
 /**
  * Requiring plugins
@@ -390,192 +347,11 @@ Widget_Shortcode_Gutenberg::get_instance();
 require get_template_directory() . '/inc/tgm_activation.php';
 
 /**
- * Disable the emoji's
+ * Duplicate Post Types
  */
-function wordpack_disable_emojis()
-{
-    remove_action('wp_head', 'print_emoji_detection_script', 7);
-    remove_action('admin_print_scripts', 'print_emoji_detection_script');
-    remove_action('wp_print_styles', 'print_emoji_styles');
-    remove_action('admin_print_styles', 'print_emoji_styles');
-    remove_filter('the_content_feed', 'wp_staticize_emoji');
-    remove_filter('comment_text_rss', 'wp_staticize_emoji');
-    remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
-    // add_filter('tiny_mce_plugins', 'disable_emojis_tinymce');
-}
-add_action('init', 'wordpack_disable_emojis');
+require get_template_directory() . '/inc/duplicate-post-types.php';
 
 /**
- * Disable wp-embed.min.js
+ * Disable Wordpress' Functions
  */
-function wordpack_deregister_scripts(){
-  wp_dequeue_script( 'wp-embed' );
- }
-add_action( 'wp_footer', 'wordpack_deregister_scripts' );
-
-// Remove Gutenberg Block Library CSS from loading on the frontend
-function wordpack_remove_wp_block_library_css(){
-  wp_dequeue_style( 'wp-block-library' );
-  wp_dequeue_style( 'wp-block-library-theme' );
-  wp_dequeue_style( 'wc-block-style' ); // Remove WooCommerce block CSS
-} 
-add_action( 'wp_enqueue_scripts', 'wordpack_remove_wp_block_library_css', 100 );
-
-/**
- * Remove lazy load from first image
- */
-function wordpack_remove_lazy_load_from_first_image($content){
-    if ( is_single() || is_page() || is_front_page() || is_home() ) {
-        $content = mb_convert_encoding($content, 'HTML-ENTITIES', "UTF-8");
-        $document = new DOMDocument();
-        libxml_use_internal_errors(true);
-        $document->loadHTML(utf8_decode($content));
-        $imgs = $document->getElementsByTagName('img');
-        $img = $imgs[0];
-        if ($imgs[0] == 1) { // Check if the post has images first
-            $img->removeAttribute( 'loading' );
-            $html = $document->saveHTML();
-            return $html;
-        }
-        else {
-            return $content;
-        }
-     }
-     else {
-        return $content;
-     }
-}
-add_filter ('the_content', 'wordpack_remove_lazy_load_from_first_image');
-
-/**
- * Remove query string from static resources
- */
-function wordpack_removing_versioning_from_static_resources($src){
-	if( strpos( $src, '?ver=' ) )
-	$src = remove_query_arg( 'ver', $src );
-	return $src;
-}
-add_filter( 'style_loader_src', 'wordpack_removing_versioning_from_static_resources', 10, 2 );
-add_filter( 'script_loader_src', 'wordpack_removing_versioning_from_static_resources', 10, 2 );
-
-/**
- * Duplicate posts and pages without plugins
- */
-add_filter( 'post_row_actions', 'wordpack_duplicate_post_link', 10, 2 );
-add_filter( 'page_row_actions', 'wordpack_duplicate_post_link', 10, 2 );
-add_filter( 'job_row_actions', 'wordpack_duplicate_post_link', 10, 2 );
-
-function wordpack_duplicate_post_link( $actions, $post ) {
-	if( ! current_user_can( 'edit_posts' ) ) {
-		return $actions;
-	}
-	$url = wp_nonce_url(
-		add_query_arg(
-			array(
-				'action' => 'rd_duplicate_post_as_draft',
-				'post' => $post->ID,
-			),
-			'admin.php'
-		),
-		basename(__FILE__),
-		'duplicate_nonce'
-	);
-	$actions[ 'duplicate' ] = '<a href="' . $url . '" title="Duplicate this item" rel="permalink">Duplica</a>';
-	return $actions;
-}
-
-/*
- * Function creates post duplicate as a draft and redirects then to the edit post screen
- */
-add_action( 'admin_action_rd_duplicate_post_as_draft', 'wordpack_duplicate_post_as_draft' );
-function wordpack_duplicate_post_as_draft(){
-	// check if post ID has been provided and action
-	if ( empty( $_GET[ 'post' ] ) ) {
-		wp_die( 'No post to duplicate has been provided!' );
-	}
-	// Nonce verification
-	if ( ! isset( $_GET[ 'duplicate_nonce' ] ) || ! wp_verify_nonce( $_GET[ 'duplicate_nonce' ], basename( __FILE__ ) ) ) {
-		return;
-	}
-	// Get the original post id
-	$post_id = absint( $_GET[ 'post' ] );
-	// And all the original post data then
-	$post = get_post( $post_id );
-	/*
-	 * if you don't want current user to be the new post author,
-	 * then change next couple of lines to this: $new_post_author = $post->post_author;
-	 */
-	$current_user = wp_get_current_user();
-	$new_post_author = $current_user->ID;
-	// if post data exists (I am sure it is, but just in a case), create the post duplicate
-	if ( $post ) {
-		// new post data array
-		$args = array(
-			'comment_status' => $post->comment_status,
-			'ping_status'    => $post->ping_status,
-			'post_author'    => $new_post_author,
-			'post_content'   => $post->post_content,
-			'post_excerpt'   => $post->post_excerpt,
-			'post_name'      => $post->post_name,
-			'post_parent'    => $post->post_parent,
-			'post_password'  => $post->post_password,
-			'post_status'    => 'draft',
-			'post_title'     => $post->post_title,
-			'post_type'      => $post->post_type,
-			'to_ping'        => $post->to_ping,
-			'menu_order'     => $post->menu_order
-		);
-		// insert the post by wp_insert_post() function
-		$new_post_id = wp_insert_post( $args );
-		/*
-		 * get all current post terms ad set them to the new post draft
-		 */
-		$taxonomies = get_object_taxonomies( get_post_type( $post ) ); // returns array of taxonomy names for post type, ex array("category", "post_tag");
-		if( $taxonomies ) {
-			foreach ( $taxonomies as $taxonomy ) {
-				$post_terms = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'slugs' ) );
-				wp_set_object_terms( $new_post_id, $post_terms, $taxonomy, false );
-			}
-		}
-		// duplicate all post meta
-		$post_meta = get_post_meta( $post_id );
-		if( $post_meta ) {
-			foreach ( $post_meta as $meta_key => $meta_values ) {
-				if( '_wp_old_slug' == $meta_key ) { // do nothing for this meta key
-					continue;
-				}
-				foreach ( $meta_values as $meta_value ) {
-					add_post_meta( $new_post_id, $meta_key, $meta_value );
-				}
-			}
-		}
-		wp_safe_redirect(
-			add_query_arg(
-				array(
-					'post_type' => ( 'post' !== get_post_type( $post ) ? get_post_type( $post ) : false ),
-					'saved' => 'post_duplication_created' // just a custom slug here
-				),
-				admin_url( 'edit.php' )
-			)
-		);
-		exit;
-	} else {
-		wp_die( 'Post creation failed, could not find original post.' );
-	}
-}
-
-/*
- * In case we decided to add admin notices
- */
-add_action( 'admin_notices', 'wordpack_duplication_admin_notice' );
-function wordpack_duplication_admin_notice() {
-	// Get the current screen
-	$screen = get_current_screen();
-	if ( 'edit' !== $screen->base ) {
-		return;
-	}
-    //Checks if settings updated
-    if ( isset( $_GET[ 'saved' ] ) && 'post_duplication_created' == $_GET[ 'saved' ] ) {
-		echo '<div class="notice notice-success is-dismissible"><p>Post type duplicato correttamente.</p></div>';
-    }
-}
+require get_template_directory() . '/inc/disable-functions.php';
