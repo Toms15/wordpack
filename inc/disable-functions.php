@@ -62,14 +62,3 @@ function wordpack_remove_lazy_load_from_first_image($content){
      }
 }
 add_filter ('the_content', 'wordpack_remove_lazy_load_from_first_image');
-
-/**
- * Remove query string from static resources
- */
-function wordpack_removing_versioning_from_static_resources($src){
-	if( strpos( $src, '?ver=' ) )
-	$src = remove_query_arg( 'ver', $src );
-	return $src;
-}
-add_filter( 'style_loader_src', 'wordpack_removing_versioning_from_static_resources', 10, 2 );
-add_filter( 'script_loader_src', 'wordpack_removing_versioning_from_static_resources', 10, 2 );
