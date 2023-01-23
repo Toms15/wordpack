@@ -33,7 +33,7 @@ class Widget_Shortcode {
      * @since 0.2.4
      */
     function i18n() {
-        load_plugin_textdomain( 'widget-shortcode', false, '/languages' );
+        load_plugin_textdomain( 'wordpack', false, '/languages' );
     }
 
     /**
@@ -62,8 +62,8 @@ class Widget_Shortcode {
      */
     function arbitrary_sidebar() {
         register_sidebar( array(
-            'name' => __( 'Wordpack Shortcode', 'widget-shortcode' ),
-            'description'   => __( 'This widget area is not displayed on frontend and can be used for [widget] shortcode.', 'widget-shortcode' ),
+            'name' => __( 'Wordpack Shortcode', 'wordpack' ),
+            'description'   => __( 'This widget area is not displayed on frontend and can be used for [widget] shortcode.', 'wordpack' ),
             'id' => 'arbitrary',
             'before_widget' => '',
             'after_widget'  => '',
@@ -78,7 +78,7 @@ class Widget_Shortcode {
      */
     function in_widget_form( $widget, $return, $instance ) {
         echo '<p>' .
-                __( 'Shortcode', 'widget-shortcode' ) . ': ' . ( ( $widget->number == '__i__' ) ? __( 'Please save this first.', 'widget-shortcode' ) : '<input type="text" value="' . esc_attr( '[widget id="'. $widget->id .'"]' ) . '" readonly="readonly" class="widefat" onclick="this.select()" />' ) .
+                __( 'Shortcode', 'wordpack' ) . ': ' . ( ( $widget->number == '__i__' ) ? __( 'Please save this first.', 'wordpack' ) : '<input type="text" value="' . esc_attr( '[widget id="'. $widget->id .'"]' ) . '" readonly="readonly" class="widefat" onclick="this.select()" />' ) .
             '</p>';
     }
 
@@ -207,7 +207,7 @@ class Widget_Shortcode {
                 $classname_ .= '_' . get_class( $cn );
         }
         $classname_ = ltrim( $classname_, '_' );
-        $classname_ .= ' widget-shortcode';
+        $classname_ .= ' wordpack';
 
         /* adds area-{AREA} classname to the widget, indicating the widget's original location */
         if ( isset( $widgets_map[ $id ] ) ) {

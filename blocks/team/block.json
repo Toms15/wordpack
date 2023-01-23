@@ -1,0 +1,16 @@
+{
+    "name": "acf/team",
+    "title": "Team",
+    "description": "A custom team block.",
+    "category": "example",
+    "icon": "admin-comments",
+    "keywords": ["team", "person"],
+    "example": {
+        "preview_image_help": "https://via.placeholder.com/1080x680.png"
+    },
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "team.php"
+    },
+    "align": "full"
+}
