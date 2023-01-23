@@ -6,6 +6,18 @@
  */
 
 /**
+ * Enqueue Bootstrap style in WP Backend.
+ */
+function wordpack_add_bootstrap_css_for_blocks() {
+    add_theme_support('editor-styles');
+    add_editor_style([
+        'https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css',
+        'style.css'
+    ]);
+}
+add_action('after_setup_theme', 'wordpack_add_bootstrap_css_for_blocks');
+
+/**
  * Allowed Blocks types
  */
 function wordpack_allowed_block_types( $allowed_blocks, $editor_context ) {

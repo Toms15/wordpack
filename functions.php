@@ -375,3 +375,8 @@ require get_template_directory() . '/inc/duplicate-post-types.php';
  * Disable Wordpress' Functions
  */
 require get_template_directory() . '/inc/disable-functions.php';
+
+/**
+ * Init ACF Blocks
+ */
+require get_template_directory() . '/inc/blocks.php';
