@@ -1,0 +1,25 @@
+.testimonial-block {
+  background-color: red;
+}
+.testimonial-block span {
+  display: block;
+}
+.testimonial-block span.testimonial-text {
+  font-size: 3rem;
+}
+.testimonial-block span.testimonial-author {
+  font-size: 1rem;
+}
+.testimonial-block span.testimonial-role {
+  font-size: 0.8rem;
+}
+.testimonial-block .ratio {
+  background-color: yellow;
+  margin-bottom: 0;
+}
+.testimonial-block img {
+  margin-bottom: 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}

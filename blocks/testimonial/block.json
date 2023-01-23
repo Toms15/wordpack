@@ -1,0 +1,17 @@
+{
+    "name": "acf/testimonial",
+    "title": "Testimonial",
+    "description": "A custom testimonial block.",
+    "style": [ "file:testimonials.css" ],
+    "category": "formatting",
+    "icon": "admin-comments",
+    "keywords": ["testimonial", "quote"],
+    "example": {
+        "preview_image_help": "https://via.placeholder.com/1080x680.png"
+    },
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "testimonial.php"
+    },
+    "align": "full"
+}
