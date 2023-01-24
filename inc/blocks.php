@@ -30,9 +30,12 @@ function wordpack_allowed_block_types( $allowed_blocks, $editor_context ) {
 		'acf/team',
 		'acf/testimonial'
 	);
-	if( 'page' === $editor_context->post->post_type ) {
-		$allowed_blocks[] = 'core/shortcode';
-	}
+	/* Check Post Types */
+	// if( 'page' === $editor_context->post->post_type ) {}
+	/* Check Page Template */
+	// if( get_page_template_slug( $editor_context->post ) === 'home.php' ) {
+		// $allowed_blocks[] = 'core/shortcode';
+	// }
 	return $allowed_blocks;
 }
 add_filter( 'allowed_block_types_all', 'wordpack_allowed_block_types', 25, 2 );
