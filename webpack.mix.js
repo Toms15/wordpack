@@ -1,6 +1,5 @@
 const mix = require('laravel-mix');
 const path = require('path');
-require('laravel-mix-purgecss');
 require('laravel-mix-webp');
 
 mix.webpackConfig({
@@ -19,11 +18,12 @@ mix.ImageWebp({
 mix.js('resources/js/app.js', 'js')
     .sass('resources/sass/app.scss', 'css')
     .browserSync({
-       proxy: 'https://packword.test',
+       proxy: 'https://packword.test', /* Change with your local domain */
        files: [
               'css/**/*',
               'js/**/*'
        ],
     });
 
-mix.minify('css/app.css');
+// Enable only for production
+// mix.minify('css/app.css');

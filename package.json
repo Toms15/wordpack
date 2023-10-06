@@ -59,7 +59,6 @@
     "production": "mix --production"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-pro": "^6.0.0",
     "@popperjs/core": "^2.10.1",
     "bootstrap": "^5.1.1",
     "counterup2": "^2.0.2",
